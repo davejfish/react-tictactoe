@@ -2,6 +2,6 @@ import './Message.css';
 
 export default function Message() {
   return (
-    <div>Message</div>
+    <div className='message'>Message</div>
   );
 }

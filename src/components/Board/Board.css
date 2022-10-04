@@ -1,0 +1,19 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 125px);
+  grid-gap: 15px;
+  margin-top: 40px;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 125px;
+  background-color: steelblue;
+  font-size: 2em;
+}
+
+.box:hover {
+  opacity: .5;
+}

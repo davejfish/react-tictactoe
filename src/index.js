@@ -11,7 +11,6 @@ root.render(
     <GameProvider >
       <App />
     </GameProvider>
-    
   </React.StrictMode>
 );
 
