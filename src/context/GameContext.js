@@ -7,13 +7,17 @@ const GameContext = createContext();
 const GameProvider = ({ children }) => {
   const [gameBoard, setGameBoard] = useState(newGame);
   const [player, setPlayer] = useState('X');
-  const [winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState(false);
+  const [turnsLeft, setTurnsLeft] = useState(9);
 
   const setTurn = () => {
     player === 'X' ? setPlayer('O') : setPlayer('X');
   };
 
   const checkWinner = (gameBoard) => {
+    if (turnsLeft <= 1)
+      return false;
+
     const checkRows = (a, b, c) => {
       if (gameBoard[a].content === '' || gameBoard[b].content === '' || gameBoard[c].content === '')
         return false;
@@ -34,6 +38,13 @@ const GameProvider = ({ children }) => {
     );
   };
 
+  const resetGame = () => {
+    setGameBoard(newGame);
+    setPlayer('X');
+    setWinner(false);
+    setTurnsLeft(9);
+  };
+
   const handleClick = (box) => {
     if (box.content !== '') return;
 
@@ -47,6 +58,7 @@ const GameProvider = ({ children }) => {
     });
 
     setGameBoard(newBoard);
+    setTurnsLeft(prev => prev - 1);
 
     if (checkWinner(newBoard)) {
       setWinner(player);
@@ -56,7 +68,7 @@ const GameProvider = ({ children }) => {
   };
 
   return (
-    <GameContext.Provider value={{ gameBoard, handleClick }}>
+    <GameContext.Provider value={{ gameBoard, handleClick, winner, resetGame, turnsLeft }}>
       {children}
     </GameContext.Provider>
   );
