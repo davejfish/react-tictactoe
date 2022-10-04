@@ -14,7 +14,7 @@ export default function Message() {
         </div> : 
         <></>
       }
-      {(winner === ('X' || 'O')) && (turnsLeft >= 1) ? 
+      {winner !== false && (turnsLeft >= 1) ? 
         <div>
           <span>{winner} is champion!</span>
           <button onClick={() => resetGame()}>play again?</button>
@@ -24,8 +24,3 @@ export default function Message() {
     </div>
   );
 }
-
-{/* <div>
-          <span>{winner} is champion!</span>
-          <button onClick={() => resetGame()}>play again?</button>
-        </div> */}
