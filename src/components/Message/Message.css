@@ -1,0 +1,9 @@
+.message {
+  margin: 20px;
+  height: 100px;
+  text-align: center;
+}
+
+.message span {
+  margin:0 10px;
+}
