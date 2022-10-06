@@ -7,16 +7,16 @@ export default function Message() {
   return (
     <div className='message'>
       <h2>Tic Tac Toe!</h2>
-      {(winner === false) && (turnsLeft <= 0) ? 
+      {winner !== false ? 
         <div>
-          <span>tie game...</span>
+          <span>{winner} is champion!</span>
           <button onClick={() => resetGame()}>play again?</button>
         </div> : 
         <></>
       }
-      {winner !== false && (turnsLeft >= 1) ? 
+      {(winner === false) && (turnsLeft <= 0) ? 
         <div>
-          <span>{winner} is champion!</span>
+          <span>tie game...</span>
           <button onClick={() => resetGame()}>play again?</button>
         </div> : 
         <></>

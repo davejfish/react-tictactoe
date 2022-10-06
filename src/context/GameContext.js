@@ -14,16 +14,14 @@ const GameProvider = ({ children }) => {
     player === 'X' ? setPlayer('O') : setPlayer('X');
   };
 
-  const checkWinner = (gameBoard) => {
-    if (turnsLeft <= 1)
-      return false;
+  function checkWinner(prop) {
 
     const checkRows = (a, b, c) => {
-      if (gameBoard[a].content === '' || gameBoard[b].content === '' || gameBoard[c].content === '')
+      if (prop[a].content === '' || prop[b].content === '' || prop[c].content === '')
         return false;
       return (
-        gameBoard[a].content === gameBoard[b].content && 
-        gameBoard[b].content === gameBoard[c].content);
+        prop[a].content === prop[b].content && 
+        prop[b].content === prop[c].content);
     };
 
     return (
@@ -36,7 +34,7 @@ const GameProvider = ({ children }) => {
       checkRows(0, 4, 8) || 
       checkRows(2, 4, 6)
     );
-  };
+  }
 
   const resetGame = () => {
     setGameBoard(newGame);
@@ -68,7 +66,7 @@ const GameProvider = ({ children }) => {
   };
 
   return (
-    <GameContext.Provider value={{ gameBoard, handleClick, winner, resetGame, turnsLeft }}>
+    <GameContext.Provider value={{ gameBoard, handleClick, winner, resetGame, turnsLeft, checkWinner }}>
       {children}
     </GameContext.Provider>
   );
